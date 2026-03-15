@@ -13,6 +13,29 @@
     
 	<body>
 <style>
+/* Logo responsywne */
+.logo {
+  width: 100px;
+  height: 100px;
+  border: solid rgb(0, 0, 0) 1px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 50px !important;
+    height: 50px !important;
+    border-width: 2px !important;
+  }
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -23,9 +46,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-body {
   margin: 0;
   padding: 0;
 background-image: url('under.png');
@@ -52,6 +72,7 @@ ul {
 
 ul li {
   float: left;
+  margin: 0;
 }
 
 ul li a {
@@ -62,6 +83,8 @@ ul li a {
   padding: 12px 11px;
   text-decoration: none;
   font-size: 20px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
 }
 
 ul li a:hover {
@@ -73,16 +96,13 @@ ul li a:hover {
   ul li {
     float: none;
     width: 100%;
+    margin: 2px 0;
   }
   
   ul li a {
     padding: 10px 8px;
-    font-size: 11px;
-  }
-  
-  ul li img {
-    width: 60px !important;
-    height: 60px !important;
+    font-size: 14px;
+    border-radius: 6px;
   }
   
   div[style*="width: 50%"] {
@@ -97,32 +117,40 @@ ul li a:hover {
 @media (max-width: 480px) {
   ul {
     padding: 5px 0;
+    max-height: 60vh; /* Ogranicz wysokość menu */
+    overflow-y: auto; /* Dodaj przewijanie pionowe */
   }
   
   ul li a {
     padding: 8px 4px;
-    font-size: 21px; /*telefon*/
-  }
-  
-  ul li img {
-    width: 50px !important;
-    height: 50px !important;
-    border-width: 2px !important;
+    font-size: 14px;
+    border-radius: 4px;
   }
   
   div[style*="width: 50%"] {
     width: 95% !important;
-    font-size: 16px !important;
+    font-size: 14px !important;
+    margin: 10px auto;
   }
   
   h2, p {
     font-size: 12px;
     margin: 5px;
   }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  center {
+    text-align: left;
+  }
 }
 div {
   /* Example: add a border or remove this rule entirely if not needed */
   /* border: 1px solid #000; */
+  box-sizing: border-box;
+  margin-bottom: 12px;
 }
 
 footer {
@@ -131,13 +159,29 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-top: 2px solid #90902e;
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 14px 6px;
+    font-size: 13px;
+    width: 100vw;
+    left: 0;
+    right: 0;
+    position: relative;
+    border-top: 1px solid #90902e;
+  }
 }
 </style>
 
 
 
 <ul>
-    <li><img src="https://pksmsciow.github.io/c022028b-19f6-46ee-be6a-a3ef30378329-removebg-preview%20(1).png" style="width:100px; height: 100px; border:solid rgb(0, 0, 0) 1px; border-radius: 50%;"></li>
+    <li><img src="https://pksmsciow.github.io/c022028b-19f6-46ee-be6a-a3ef30378329-removebg-preview%20(1).png" class="logo" style="position: fixed;"></li>
   <li><a href="zxc.html">Strona Główna</a></li>
   <li><a href="zxc.html">Opis</a></li>
   <li><a href="zxc.html">Lista Zawodników</a></li>
@@ -182,7 +226,7 @@ footer {
 </font>
 </div></center>
 	<center>
-<div style="background-color: rgb(10, 46, 10, 0.842); font-size:18px; width: 50%; fl">
+<div style="background-color: rgb(10, 46, 10, 0.842); font-size:18px; width: 50%;">
             <font color="gold" face="Arial">
               <h1>Najnowsze informacja</h1>
              <!-- <p style="color:red;">Brak najnowszych informacji</p>-->
@@ -199,7 +243,7 @@ footer {
             </font>
 </div></center>
 </div>
-<footer style="background-color: rgb(0, 0, 0); color: white; text-align: center; padding: 10px; font-family: Arial;">PKS Mściów  - NettlesID Soft - Twórca stron internetowych i aplikacji</footer>
+<footer>Copyright © 2026 PKS Mściów <a href="" style="color: white;">NettlesID Soft</a>. Wszelkie prawa zastrzeżone.</footer>
         <script src="./KSZ Romper Wolf_files/config.js.pobierz"></script>
 		<script>
 			        function updateClock() {
