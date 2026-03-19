@@ -1,0 +1,66 @@
+-- 1. Wypisz nazwiska wszystkich nauczycieli
+SELECT nazwisko FROM nauczyciele;
+
+-- 2. Wypisz imiona uczniów rozpoczynające się na J
+SELECT imie FROM uczniowie WHERE imie LIKE 'J%';
+
+-- 3. Wypisz nazwiska nauczycielek (zakładając, że imiona żeńskie kończą się na 'a')
+SELECT nazwisko FROM nauczyciele WHERE imie LIKE '%a';
+
+-- 4. Wypisz daty urodzenia nauczycieli, których imię oraz nazwisko rozpoczynają się literą R
+SELECT data_urodzenia FROM nauczyciele WHERE imie LIKE 'R%' AND nazwisko LIKE 'R%';
+
+-- 5. Wypisz nazwy przedmiotów w kolejności odwrotnej do kolejności alfabetycznej
+SELECT nazwa FROM przedmioty ORDER BY nazwa DESC;
+
+-- 6. Wypisz nazwiska nauczycieli urodzonych w 1970 roku
+SELECT nazwisko FROM nauczyciele WHERE YEAR(data_urodzenia) = 1970;
+
+-- 7. Wypisz nazwiska uczniów, których imię nie zawiera litery a
+SELECT nazwisko FROM uczniowie WHERE imie NOT LIKE '%a%';
+
+-- 8. Jaka jest najwyższa pensja pracownika?
+SELECT MAX(pensja) FROM pracownicy;
+
+-- 9. Jaka jest data urodzenia najmłodszego pracownika?
+SELECT MAX(data_urodzenia) FROM pracownicy;
+
+-- 10. Jaka jest średnia pensja w bazie?
+SELECT AVG(pensja) FROM pracownicy;
+
+-- 11. Ilu pracowników urodziło się w 1999 roku?
+SELECT COUNT(*) FROM pracownicy WHERE YEAR(data_urodzenia) = 1999;
+
+-- 12. Jaka jest najwyższa pensja jaką otrzymuje pracownik o imieniu Jan?
+SELECT MAX(pensja) FROM pracownicy WHERE imie = 'Jan';
+
+-- 13. Jaka jest średnia kwota wszystkich wypłaconych premii?
+SELECT AVG(kwota) FROM premie;
+
+-- 14. Kiedy po raz pierwszy wypłacono premię?
+SELECT MIN(data_wyplaty) FROM premie;
+
+-- 15. Wypisz ilość ocen z poszczególnych przedmiotów z tabeli ocena. Wynik posortuj od największej do najmniejszej ilości ocen.
+SELECT id_przedmiotu, COUNT(*) AS ilosc_ocen 
+FROM ocena 
+GROUP BY id_przedmiotu 
+ORDER BY ilosc_ocen DESC;
+
+-- 16. Wypisz listę nauczycieli oraz ilość wystawionych przez nich piątek. Listę posortuj od największej ilości wystawionych ocen bdb.
+SELECT id_nauczyciela, COUNT(*) AS ilosc_piatek 
+FROM ocena 
+WHERE ocena = 5 
+GROUP BY id_nauczyciela 
+ORDER BY ilosc_piatek DESC;
+
+-- 17. Wypisz listę zawierającą imię oraz ilość wystąpień tego imienia wśród uczniów. Listę posortuj według popularności imion.
+SELECT imie, COUNT(*) AS ilosc 
+FROM uczniowie 
+GROUP BY imie 
+ORDER BY ilosc DESC;
+
+-- 18. Wypisz listę zawierającą lata oraz ilości nauczycieli urodzonych w poszczególnych latach. Wynik posortuj latami malejąco.
+SELECT YEAR(data_urodzenia) AS rok, COUNT(*) AS ilosc 
+FROM nauczyciele 
+GROUP BY YEAR(data_urodzenia) 
+ORDER BY rok DESC;
