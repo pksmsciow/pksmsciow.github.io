@@ -1,30 +1,26 @@
 <?php
-// Definiowanie zmiennych (z przykładu 47.11)
-$x = 12;
-$y = 8;
+echo "<h2>Zadanie 1: Reszta z dzielenia</h2>";
+$a = 23;
+$b = 7;
+$reszta = $a % $b;
+echo "Reszta z dzielenia $a przez $b wynosi: <b>$reszta</b>";
 
-// Obliczenia arytmetyczne
-$suma = $x + $y;
-$roznica = $x - $y;
-$iloczyn = $x * $y;
-$iloraz = $x / $y;
-$reszta = $x % $y; // Operacja modulo
+echo "<hr><h2>Zadanie 2: Obliczenie wyrażenia</h2>";
+$x = 8; // Przykładowa wartość, jeśli nie podano w zadaniu
+$y = 6;
+$wynik_wyrazenia = (2 * $x - 0.5 * $y) / 4;
+echo "Dla x=$x i y=$y wynik wyrażenia (2*x - 0.5*y) / 4 wynosi: <b>$wynik_wyrazenia</b>";
 
-// Wyświetlanie wyników w przeglądarce
-// Używamy <br>, aby każda informacja była w nowej linii
-echo "Suma $x i $y wynosi $suma<br>";
-echo "Różnica $x i $y wynosi $roznica<br>";
-echo "Iloczyn $x i $y wynosi $iloczyn<br>";
-echo "Iloraz $x przez $y wynosi $iloraz<br>";
-echo "Reszta z dzielenia $x przez $y wynosi $reszta<br>";
+echo "<hr><h2>Zadanie 3: Operacje bitowe</h2>";
+$x_bit = 57;
+$y_bit = 208;
 
-echo "<hr>"; // Linia oddzielająca
+$iloczyn_bitowy = $x_bit & $y_bit;  // AND
+$suma_bitowa = $x_bit | $y_bit;    // OR
+$roznica_bitowa = $x_bit ^ $y_bit; // XOR
 
-// Przykład użycia operatorów porównania (z tabeli 47.3)
-echo "Czy $x jest równe $y? ";
-var_dump($x == $y); // Zwróci bool(false)
-echo "<br>";
-
-echo "Czy $x jest większe od $y? ";
-var_dump($x > $y); // Zwróci bool(true)
+echo "Liczby: $x_bit oraz $y_bit<br>";
+echo "Iloczyn bitowy (&): <b>$iloczyn_bitowy</b><br>";
+echo "Suma bitowa (|): <b>$suma_bitowa</b><br>";
+echo "Różnica bitowa (^): <b>$roznica_bitowa</b>";
 ?>
