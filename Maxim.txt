@@ -1,153 +1,30 @@
 <?php
-// Połączenie z bazą danych - wspólne dla całej strony
-$conn = mysqli_connect('localhost', 'root', '', 'firma');
+// Definiowanie zmiennych (z przykładu 47.11)
+$x = 12;
+$y = 8;
+
+// Obliczenia arytmetyczne
+$suma = $x + $y;
+$roznica = $x - $y;
+$iloczyn = $x * $y;
+$iloraz = $x / $y;
+$reszta = $x % $y; // Operacja modulo
+
+// Wyświetlanie wyników w przeglądarce
+// Używamy <br>, aby każda informacja była w nowej linii
+echo "Suma $x i $y wynosi $suma<br>";
+echo "Różnica $x i $y wynosi $roznica<br>";
+echo "Iloczyn $x i $y wynosi $iloczyn<br>";
+echo "Iloraz $x przez $y wynosi $iloraz<br>";
+echo "Reszta z dzielenia $x przez $y wynosi $reszta<br>";
+
+echo "<hr>"; // Linia oddzielająca
+
+// Przykład użycia operatorów porównania (z tabeli 47.3)
+echo "Czy $x jest równe $y? ";
+var_dump($x == $y); // Zwróci bool(false)
+echo "<br>";
+
+echo "Czy $x jest większe od $y? ";
+var_dump($x > $y); // Zwróci bool(true)
 ?>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8"> <title>Baza danych o pracownikach firm</title> <style>
-        /* Arkusz stylów zgodny z wytycznymi [cite: 13-26] */
-        body {
-            background-color: #8BB381; /* [cite: 15] */
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #336600; /* [cite: 16] */
-            color: white; /* [cite: 16] */
-            font-size: 120%; /* [cite: 16] */
-            text-align: center; /* [cite: 16] */
-            height: 10%; /* [cite: 18] */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #container {
-            display: flex;
-            height: 70%; /* [cite: 19, 20] */
-        }
-
-        #lewy {
-            background-color: #AFC7C7; /* [cite: 19] */
-            width: 40%; /* [cite: 19] */
-            text-align: center; /* [cite: 19] */
-        }
-
-        #prawy {
-            background-color: #CFECEC; /* [cite: 20] */
-            width: 60%; /* [cite: 20] */
-            font-size: 15px; /* [cite: 20] */
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #669966; /* [cite: 21] */
-            color: white; /* [cite: 21] */
-            text-align: center; /* [cite: 21] */
-            font-size: 120%; /* [cite: 21] */
-            font-family: Tahoma, sans-serif; /* [cite: 21] */
-            height: 10%; /* [cite: 21] */
-            padding: 10px; /* [cite: 21] */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        table {
-            width: 300px; /* [cite: 22] */
-            border: 2px solid green; /* [cite: 22] */
-            margin: 20px auto;
-            text-align: center; /* [cite: 22] */
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: #006633; /* [cite: 26] */
-            color: white; /* [cite: 26] */
-            padding: 5px;
-        }
-
-        td {
-            padding: 5px;
-            border: 1px solid green;
-        }
-
-        p {
-            text-align: center; /* [cite: 25] */
-            font-family: Tahoma, sans-serif; /* [cite: 25] */
-            color: #003300; /* [cite: 25] */
-            font-size: 20px; /* [cite: 25] */
-            font-weight: bold; /* [cite: 25] */
-        }
-
-        img {
-            height: 50px;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>BAZA DANYCH O PRACOWNIKACH</h1> </header>
-
-<div id="container">
-    <section id="lewy">
-        <h2>Informatycy poniżej roku 1975</h2> <table>
-            <tr>
-                <th>Imię</th>
-                <th>Nazwisko</th>
-                <th>Pensja</th>
-            </tr>
-            <?php
-            // Skrypt nr 1 [cite: 37]
-            if ($conn) {
-                $sql1 = "SELECT imie, nazwisko, pensja FROM pracownicy 
-                         WHERE plec = 'M' AND stanowisko = 'informatyk' AND rok_urodzenia < 1975 
-                         ORDER BY pensja DESC";
-                $res1 = mysqli_query($conn, $sql1);
-                while ($row = mysqli_fetch_row($res1)) {
-                    echo "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td></tr>";
-                }
-            }
-            ?>
-        </table>
-    </section>
-
-    <section id="prawy">
-        <h2>Sekretarki firmy "Omega"</h2> <ol>
-            <?php
-            // Skrypt nr 2 [cite: 38]
-            if ($conn) {
-                $sql2 = "SELECT imie, nazwisko FROM pracownicy 
-                         WHERE stanowisko = 'sekretarka' AND nazwa_firmy = 'Omega' AND pensja = 2000";
-                $res2 = mysqli_query($conn, $sql2);
-                while ($row = mysqli_fetch_row($res2)) {
-                    echo "<li>$row[0] $row[1]</li>";
-                }
-            }
-            ?>
-        </ol>
-        <hr> <?php
-        // Skrypt nr 3 [cite: 38]
-        if ($conn) {
-            $sql3 = "SELECT MAX(pensja), MIN(pensja), AVG(pensja) FROM pracownicy";
-            $res3 = mysqli_query($conn, $sql3);
-            $data = mysqli_fetch_row($res3);
-            $srednia = round($data[2], 2);
-            
-            echo "<p>Najwyższa pensja wynosi: $data[0]</p>";
-            echo "<p>Najniższa pensja wynosi: $data[1]</p>";
-            echo "<p>Średnia pensja wynosi: $srednia</p>";
-        }
-        mysqli_close($conn);
-        ?>
-    </section>
-</div>
-
-<footer>
-    <img src="logoc.png" alt="logo"> <span>Autor: [Wpisz Swoje Dane], klasa [Klasa]</span> <img src="logoc.png" alt="logo"> </footer>
-
-</body>
-</html>
