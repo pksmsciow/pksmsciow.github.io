@@ -1,26 +1,54 @@
 <?php
-echo "<h2>Zadanie 1: Reszta z dzielenia</h2>";
-$a = 23;
-$b = 7;
-$reszta = $a % $b;
-echo "Reszta z dzielenia $a przez $b wynosi: <b>$reszta</b>";
 
-echo "<hr><h2>Zadanie 2: Obliczenie wyrażenia</h2>";
-$x = 8; // Przykładowa wartość, jeśli nie podano w zadaniu
-$y = 6;
-$wynik_wyrazenia = (2 * $x - 0.5 * $y) / 4;
-echo "Dla x=$x i y=$y wynik wyrażenia (2*x - 0.5*y) / 4 wynosi: <b>$wynik_wyrazenia</b>";
+// --- PRZYKŁAD 48.2: Sprawdzanie parzystości ---
+$x1 = 125;
+echo "Przykład 48.2 dla liczby $x1:\n";
 
-echo "<hr><h2>Zadanie 3: Operacje bitowe</h2>";
-$x_bit = 57;
-$y_bit = 208;
+if ($x1 % 2 == 0) {
+    echo "Liczba jest parzysta";
+} else {
+    echo "Liczba jest nieparzysta";
+}
 
-$iloczyn_bitowy = $x_bit & $y_bit;  // AND
-$suma_bitowa = $x_bit | $y_bit;    // OR
-$roznica_bitowa = $x_bit ^ $y_bit; // XOR
+echo "\n\n"; // Odstęp w konsoli/przeglądarce
 
-echo "Liczby: $x_bit oraz $y_bit<br>";
-echo "Iloczyn bitowy (&): <b>$iloczyn_bitowy</b><br>";
-echo "Suma bitowa (|): <b>$suma_bitowa</b><br>";
-echo "Różnica bitowa (^): <b>$roznica_bitowa</b>";
+// --- PRZYKŁAD 48.3: Podzielność przez 35, 5 i 7 ---
+$x2 = 21;
+echo "Przykład 48.3 dla liczby $x2:\n";
+
+// sprawdzenie, czy x jest podzielne przez 35
+if ($x2 % 35 == 0) {
+    echo "Liczba $x2 jest podzielna przez 35";
+} 
+// sprawdzenie, czy x jest podzielne przez 5
+elseif ($x2 % 5 == 0) {
+    echo "Liczba $x2 jest podzielna przez 5, ale nie jest podzielna przez 7";
+} 
+// sprawdzenie, czy x jest podzielne przez 7
+elseif ($x2 % 7 == 0) {
+    echo "Liczba $x2 jest podzielna przez 7, ale nie jest podzielna przez 5";
+} 
+else {
+    echo "Liczba $x2 nie jest podzielna przez 5 i nie jest podzielna przez 7";
+}
+
+echo "\n\n";
+
+// --- PRZYKŁAD 48.4: Łączenie warunków (parzystość i podzielność przez 3) ---
+$x3 = 49;
+echo "Przykład 48.4 dla liczby $x3:\n";
+
+if ($x3 % 2 == 0 && $x3 % 3 == 0) {
+    echo "Liczba $x3 jest liczbą parzystą i podzielną przez 3";
+} 
+elseif ($x3 % 2 != 0 && $x3 % 3 == 0) {
+    echo "Liczba $x3 jest liczbą nieparzystą i podzielną przez 3";
+} 
+elseif ($x3 % 2 == 0 && $x3 % 3 != 0) {
+    echo "Liczba $x3 jest liczbą parzystą i niepodzielną przez 3";
+} 
+else {
+    echo "Liczba $x3 jest liczbą nieparzystą i niepodzielną przez 3";
+}
+
 ?>
