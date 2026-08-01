@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LWL - Lokalna Wiejska Liga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #16181b;
+            --bg-card: #202429;
+            --accent-green: #2eac49;
+            --accent-gold: #f0a818;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #2e353e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- NAVIGATION --- */
+        navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(22, 24, 27, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-green);
+            backdrop-filter: blur(8px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--accent-green), #1b632a);
+            color: #fff;
+            font-weight: 800;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 1.4rem;
+            border: 2px solid var(--accent-gold);
+            border-radius: 90%;
+        }
+
+        .brand-title {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(22,24,27,1)), 
+                        radial-gradient(circle at center, #2eac4933 0%, transparent 70%);
+            padding: 80px 5% 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-green);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #258a3a;
+            box-shadow: 0 0 15px rgba(46, 172, 73, 0.4);
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 12px;
+        }
+
+        /* --- TABLE STYLE --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--accent-gold);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        tr:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* --- SPONSOR BANNER --- */
+        .sponsor-box {
+            background: linear-gradient(135deg, #1a1d20, #0d0e10);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sponsor-badge {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sponsor-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .cat-icon {
+            font-size: 3rem;
+            margin: 15px 0;
+            display: block;
+        }
+
+        .sponsor-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0d0e10;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        footer strong {
+            color: var(--text-light);
+        }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            nav ul {
+                display: none; /* Uproszczenie pod urządzenia mobilne */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <navbar>
+        <div class="brand">
+            <div class="brand-badge"><img src="https://pksmsciow.github.io/xzx.png" alt="LWL Logo" style="border-radius: 50%;" width="100"></div>
+            <div class="brand-title">Lokalna Wiejska Liga</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#aktualnosci">Aktualności</a></li>
+                <li><a href="#tabela">Tabela</a></li>
+                <li><a href="#terminarz">Terminarz</a></li>
+                <li><a href="#sponsor">Sponsor</a></li>
+            </ul>
+        </nav>
+    </navbar>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Lokalna Wiejska <span>Liga</span></h1>
+        <p>Oficjalne rozgrywki siatkówki. Sprawdź najnowsze wyniki, harmonogram meczów oraz sytuację w tabeli.</p>
+        <a href="#tabela" class="btn">Zobacz Tabelę Ligową</a>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- LEFT COLUMN: News & Table -->
+        <main>
+            <section id="tabela" class="card">
+                <h2 class="section-title">Tabela Ligowa</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Poz</th>
+                            <th>Drużyna</th>
+                            <th>Mecze</th>
+                            <th>Pkt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Brak</td>
+                            <td>Brak</td>
+                            <td><strong>Brak</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Brak</td>
+                            <td>Brak</td>
+                            <td><strong>Brak</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Brak</td>
+                            <td>Brak</td>
+                            <td><strong>Brak</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>Brak</td>
+                            <td>Brak</td>
+                            <td><strong>Brak</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="aktualnosci" class="card">
+                <h2 class="section-title">Ostatnie Aktualności</h2>
+                <article style="margin-bottom: 20px;">
+                    <h3 style="color: var(--accent-green);">Wielki finał rundy jesiennej już w tę sobotę!</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">
+                        Emocje sięgają sięgają granicy! Lider tabeli podejmie vice-lidera na własnym parkiecie. Zapraszamy wszystkich kibiców do wsparcia swoich drużyn.
+                    </p>
+                </article>
+            </section>
+        </main>
+
+        <!-- RIGHT COLUMN: Sponsor Info Sidebar -->
+        <aside>
+            <div id="sponsor" class="sponsor-box">
+                <div class="sponsor-badge">Główny Sponsor Ligi</div>
+                <div class="sponsor-title">NETTLESID</div>
+                <div class="cat-icon"><img src="https://nettlesidsoft.github.io/Nettles.png" alt="NETTLESID Logo" width="100"></div>
+                <p>Developer Oprogramowania Komputerowego</p>
+                <p style="font-size: 0.8rem; color: #71717a;">
+                    Tworzymy dedykowane systemy oraz oprogramowanie, wspierając lokalny sport i rozwój młodzieży.
+                </p>
+                <a href="https://nettlesidsoft.github.io/" class="btn" style="padding: 8px 16px; font-size: 0.8rem; background: transparent; border: 1px solid var(--accent-green);">Strona Sponsora</a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <strong>Lokalna Wiejska Liga (LWL)</strong>. Wszelkie prawa zastrzeżone.</p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #64748b;">
+            Sponsorem LWL jest <strong>NETTLESID DEVELOPER OPROGRAMOWANIA KOMPUTEROWEGO</strong>
+        </p>
+    </footer>
+
+</body>
+</html>
